@@ -1,15 +1,15 @@
 // Functionality implemented:
-    // Tell current weather
-    // Hourly predictions for the next 2 days
-    // Week-long daily forecast
-    // User input for zip/city name
-    // Allow for city name instead of zip code -NEXT STEP-
-    // Toggle between hourly and daily weather data
-    // Translate unix timestamps to standard date/time
-    // Add icons for each weather -NEXT STEP-
-    // Make it look prettier
+// Tell current weather
+// Hourly predictions for the next 2 days
+// Week-long daily forecast
+// User input for zip/city name
+// Allow for city name instead of zip code -NEXT STEP-
+// Toggle between hourly and daily weather data
+// Translate unix timestamps to standard date/time
+// Add icons for each weather -NEXT STEP-
+// Make it look prettier
 // Functionality needed:
-    // All functionality implemented!
+// All functionality implemented!
 
 import React, { useState, useContext } from "react";
 import Current from "./Current";
@@ -33,11 +33,11 @@ function App(props) {
   const { ucCity } = useContext(LocationContext);
 
   console.log("weatherProps", props);
-  console.log("weatherCity?", props.location.state.city);
+  //console.log("weatherCity?", props.location.state.city);
   const handleRestaurantSearch = () => {
     setCity(ucCity);
     console.log("handleRestaurant City", city);
-}
+  }
 
   const makeForecast = (lat, long) => {
     const url = new URL("https://api.openweathermap.org/data/2.5/onecall");
@@ -110,20 +110,21 @@ function App(props) {
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <br />
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <Button variant="contained" color="secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center", margin:"10px" }} onClick={handleRestaurantSearch}> Search from Restaurant Finder</Button>
+          <Typography variant="h8"> OR </Typography>
           <TextField label="Search by Zip Code" variant="outlined" onChange={handleZipSearch} style={{ padding: "10px" }} />
           <Typography variant="h8"> OR </Typography>
           <TextField label="Search by City Name" variant="outlined" onChange={handleCitySearch} style={{ padding: "10px" }} />
         </div>
         <br />
-        <Button variant = "contained" color = "secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={handleRestaurantSearch}> Click Here First if Searching from Restaurant Finder</Button>
-        <br />
-        <Button variant = "contained" color = "primary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={getWeather}>Get Weather</Button>
+
+        <Button variant="contained" color="primary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={getWeather}>Get Weather</Button>
 
         <Current weather={weather} ></Current>
 
         <br />
         <div>
-          <ButtonGroup variant = "text" color="secondary" aria-label="contained primary button group" size="large">
+          <ButtonGroup variant="text" color="secondary" aria-label="contained primary button group" size="large">
             <Button onClick={getHourly}>Hourly Forecast</Button>
             <Button onClick={getWeekly}>Weekly Forecast</Button>
           </ButtonGroup>
@@ -143,21 +144,22 @@ function App(props) {
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <br />
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        <Button variant="contained" color="secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center", margin:"10px" }} onClick={handleRestaurantSearch}> Search from Restaurant Finder</Button>
+          <Typography variant="h8"> OR </Typography>
           <TextField label="Search by Zip Code" variant="outlined" onChange={handleZipSearch} style={{ padding: "10px" }} />
           <Typography variant="h8"> OR </Typography>
           <TextField label="Search by City Name" variant="outlined" onChange={handleCitySearch} style={{ padding: "10px" }} />
         </div>
         <br />
-        <Button variant = "contained" color = "secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={handleRestaurantSearch}> Click Here First if Searching from Restaurant Finder</Button>
-        <br />
-        <Button variant = "contained" color = "primary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={getWeather}>Get Weather</Button>
+
+        <Button variant="contained" color="primary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={getWeather}>Get Weather</Button>
 
 
         <Current weather={weather} ></Current>
 
         <br />
         <div>
-          <ButtonGroup variant = "text" color="secondary" aria-label="contained primary button group" size="large">
+          <ButtonGroup variant="text" color="secondary" aria-label="contained primary button group" size="large">
             <Button onClick={getHourly}>Hourly Forecast</Button>
             <Button onClick={getWeekly}>Weekly Forecast</Button>
           </ButtonGroup>

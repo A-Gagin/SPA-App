@@ -1,27 +1,6 @@
 import { Typography, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function Home() {
-    let history = useHistory();
-    const dummyRes = () => {
-
-        history.push({
-            pathname: '/restaurants',
-            state: {
-                lat: 0,
-                lon: 0
-            }
-        });
-    }
-    const dummyWea = () => {
-
-        history.push({
-            pathname: '/weather',
-            state: {
-                city: "Charlottesville",
-                isRequest: false
-            }
-        });
-    }
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Typography variant="h1">Weather and Restaurant Finder</Typography>
@@ -34,15 +13,19 @@ function Home() {
                 <br />
 
 
-                <Button variant="contained" color="secondary" style={{ marginLeft: "10px", marginRight: "10px" }} onClick={dummyWea}>
-                    Weather Finder
-                </Button>
+                <Link to="/weather" style={{ textDecoration: "none" }}>
+                    <Button variant="contained" color="secondary" style={{ marginLeft: "10px", marginRight: "10px" }}>
+                        Weather Finder
+                    </Button>
+                </Link>
 
                 <Typography variant="h5">or the</Typography>
 
-                <Button variant="contained" color="secondary" style={{ marginLeft: "10px", marginRight: "10px" }} onClick={dummyRes}>
-                    Restaurant Finder
-                </Button>
+                <Link to="/restaurants" style={{ textDecoration: "none" }}>
+                    <Button variant="contained" color="secondary" style={{ marginLeft: "10px", marginRight: "10px" }}>
+                        Restaurant Finder
+                    </Button>
+                </Link>
             </div>
         </div>
     );

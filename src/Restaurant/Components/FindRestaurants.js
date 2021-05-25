@@ -23,29 +23,13 @@ function FindRestaurants(props) {
     console.log("UCCity", ucCity);
     console.log("UCLat/Lon: ", ucLat, ", ", ucLon);
 
-
-    let weatherLat = "";
-    let weatherLon = "";
-    if (props.weatherLat != null && props.weatherLon != null){
-        weatherLat = props.weatherLat;
-        weatherLon = props.weatherLon;
-    }else {
-        weatherLat = "";
-        weatherLon = "";
-      }
     const weatherLocation = ucLat + "," + ucLon;
     console.log(weatherLocation);
 
     let history = useHistory();
     const handleWeather = (e) => {
         setUCCity(city.substring(0, city.indexOf(",")));
-
-        history.push({
-            pathname: '/weather',
-            state: {
-                city: city.substring(0, city.indexOf(","))
-            }
-        });
+        history.push({ pathname: '/weather' });
     }
 
     const [bar, setBar] = useState(false);
