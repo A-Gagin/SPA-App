@@ -1,12 +1,15 @@
 import { Typography } from '@material-ui/core';
+import React, { useContext } from "react";
+import { LocationContext } from "../../Contexts/locationContext";
 
 function DisplayRestaurants(props) {
+    const { ucLat, ucLon } = useContext(LocationContext);
     let lat = "";
     let lon = "";
 
-    if (props.weatherLat && props.weatherLon){
-        lat = props.weatherLat;
-        lon = props.weatherLon;
+    if (ucLat && ucLon){
+        lat = ucLat;
+        lon = ucLon;
     } else {
         lat = props.latitude;
         lon = props.longitude;
