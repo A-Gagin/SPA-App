@@ -1,10 +1,13 @@
-import React, { } from "react";
+import React, { useContext } from "react";
 import GetIcon from "./GetIcon";
 import { Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-//import RestaurantApp from "src/Restaurant/RestaurantApp.js";
+import { LocationContext } from "../Contexts/locationContext";
 
 function Current(weather) {
+    const { ucLat, setUCLat, ucLon, setUCLon, ucCity } = useContext(LocationContext);
+    console.log(ucCity);
+
     let history = useHistory();
     const handleRestaurant = (e) => {
 
@@ -19,7 +22,9 @@ function Current(weather) {
 
     if (weather.weather != null) { // check to make sure you're not trying to access things that are undefined
         console.log("weather.weather", weather.weather); // want to send over weather.weather.coord.lat / lon
-
+        setUCLat(weather.weather.coord.lat);
+        setUCLon(weather.weather.coord.lon);
+        console.log("UCLat/Lon: ", ucLat, ", ", ucLon);
         return (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <br />

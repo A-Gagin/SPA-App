@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, ButtonGroup, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import { LocationContext } from "../../Contexts/locationContext";
 const API_KEY = process.env.REACT_APP_api_key;
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +18,12 @@ function FindRestaurants(props) {
     const [address, setAddress] = useState(""); // used for geocoding api
     const [location, setLocation] = useState(""); // used for places api
     const [city, setCity] = useState("");
+
+    const { ucLat, ucLon, ucCity, setUCCity } = useContext(LocationContext);
+    console.log("UCCity", ucCity);
+    console.log("UCLat/Lon: ", ucLat, ", ", ucLon);
+
+
     let weatherLat = "";
     let weatherLon = "";
     if (props.weatherLat != null && props.weatherLon != null){
@@ -26,11 +33,12 @@ function FindRestaurants(props) {
         weatherLat = "";
         weatherLon = "";
       }
-    const weatherLocation = weatherLat + "," + weatherLon;
+    const weatherLocation = ucLat + "," + ucLon;
     console.log(weatherLocation);
 
     let history = useHistory();
     const handleWeather = (e) => {
+        setUCCity(city.substring(0, city.indexOf(",")));
 
         history.push({
             pathname: '/weather',

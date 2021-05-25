@@ -11,7 +11,7 @@
 // Functionality needed:
     // All functionality implemented!
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Current from "./Current";
 import Hourly from "./Hourly";
 import Weekly from "./Weekly";
@@ -19,6 +19,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField"
 import Typography from "@material-ui/core/Typography"
+import { LocationContext } from "../Contexts/locationContext";
 
 const API_KEY = process.env.REACT_APP_weather_api_key;
 
@@ -26,14 +27,15 @@ function App(props) {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [zip, setZip] = useState(null);
-  const [city, setCity] = useState("Charlottesville");
+  const [city, setCity] = useState("");
   const [hourly, setHourly] = useState(true);
   const [daily, setDaily] = useState(false);
+  const { ucCity } = useContext(LocationContext);
 
   console.log("weatherProps", props);
   console.log("weatherCity?", props.location.state.city);
   const handleRestaurantSearch = () => {
-    setCity(props.location.state.city);
+    setCity(ucCity);
     console.log("handleRestaurant City", city);
 }
 
@@ -86,6 +88,7 @@ function App(props) {
 
   const handleZipSearch = (e) => {
     setZip(e.target.value);
+    console.log(zip);
   }
 
   const handleCitySearch = (e) => {
@@ -145,7 +148,7 @@ function App(props) {
           <TextField label="Search by City Name" variant="outlined" onChange={handleCitySearch} style={{ padding: "10px" }} />
         </div>
         <br />
-        <Button variant = "contained" color = "secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={handleRestaurantSearch}> Click Here if Searching from Restaurant Finder</Button>
+        <Button variant = "contained" color = "secondary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={handleRestaurantSearch}> Click Here First if Searching from Restaurant Finder</Button>
         <br />
         <Button variant = "contained" color = "primary" style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onClick={getWeather}>Get Weather</Button>
 
