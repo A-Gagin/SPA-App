@@ -1,6 +1,17 @@
 import { Typography } from '@material-ui/core';
 
 function DisplayRestaurants(props) {
+    let lat = "";
+    let lon = "";
+
+    if (props.weatherLat && props.weatherLon){
+        lat = props.weatherLat;
+        lon = props.weatherLon;
+    } else {
+        lat = props.latitude;
+        lon = props.longitude;
+    }
+
     if (props.restaurants != null) {
         return (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "300px", overflowY: "scroll", backgroundColor: "gray", borderRadius:"10px"}}>
@@ -13,7 +24,7 @@ function DisplayRestaurants(props) {
                                 <li>{restaurant.vicinity}</li>
                                 <li>{restaurant.rating != null ? restaurant.rating + " / 5" : "Rating data not available."}</li>
                                 <li>{restaurant.price_level != null ? "$".repeat(restaurant.price_level) : "Price data not available."}</li>
-                                <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + props.latitude + "," + props.longitude + "&destination=" + restaurant.geometry.location.lat + "," + restaurant.geometry.location.lng} target="_blank" rel="noreferrer">Get Directions</a></li>
+                                <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + lat + "," + lon + "&destination=" + restaurant.geometry.location.lat + "," + restaurant.geometry.location.lng} target="_blank" rel="noreferrer">Get Directions</a></li>
                             </div>
                         </div>
                     ))

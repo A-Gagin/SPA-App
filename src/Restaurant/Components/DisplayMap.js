@@ -13,6 +13,17 @@ function DisplayMap(props) {
         zoom: 13
     });
 
+    let lat = "";
+    let lon = "";
+
+    if (props.weatherLat && props.weatherLon){
+        lat = props.weatherLat;
+        lon = props.weatherLon;
+    } else {
+        lat = props.latitude;
+        lon = props.longitude;
+    }
+
 
     const [selected, setSelected] = useState(null);
 
@@ -51,7 +62,7 @@ function DisplayMap(props) {
                             <li>{selected.vicinity}</li>
                             <li>{selected.rating != null ? selected.rating + " / 5" : "Rating data not available."}</li>
                             <li>{selected.price_level != null ? "$".repeat(selected.price_level) : "Price data not available."}</li>
-                            <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + props.latitude + "," + props.longitude + "&destination=" + selected.geometry.location.lat + "," + selected.geometry.location.lng} target="_blank" rel="noreferrer">Get Directions</a></li>
+                            <li><a href={"https://www.google.com/maps/dir/?api=1&origin=" + lat + "," + lon + "&destination=" + selected.geometry.location.lat + "," + selected.geometry.location.lng} target="_blank" rel="noreferrer">Get Directions</a></li>
                         </div>
                     </Popup>
                 ) : null}

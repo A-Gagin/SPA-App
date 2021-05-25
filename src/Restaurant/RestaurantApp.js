@@ -30,11 +30,11 @@ function App(props) {
   return (
     <div style={{ backgroundColor: "lightgray"}}>
       <FindRestaurants setRestaurants={setRestaurants} setLatitude={setLatitude} setLongitude={setLongitude} latitude = {latitude} longitude = {longitude} weatherLat={weatherLat} weatherLon={weatherLon} />
-      <DisplayMap restaurants={restaurants} latitude={latitude} longitude={longitude}/>
+      <DisplayMap restaurants={restaurants} latitude={latitude} longitude={longitude} weatherLat={weatherLat} weatherLon={weatherLon}/>
       <br/>
       <SortRestaurants restaurants={restaurants} setRestaurants={setRestaurants} />
       <div style={{width: "500px", marginLeft: "auto", marginRight:"auto"}}>
-      <DisplayRestaurants restaurants={restaurants} latitude={latitude} longitude={longitude} />
+      <DisplayRestaurants restaurants={restaurants} latitude={latitude} longitude={longitude} weatherLat={weatherLat} weatherLon={weatherLon}/>
       </div>
     </div>
   );
