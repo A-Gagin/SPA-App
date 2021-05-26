@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import './Map.css';
+import { LocationContext } from "../../Contexts/locationContext";
 const API_KEY = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 //Bug: can't update map focus. Not sure how to fix.
 function DisplayMap(props) {
@@ -13,12 +14,14 @@ function DisplayMap(props) {
         zoom: 13
     });
 
+    const { ucLat, ucLon } = useContext(LocationContext);
+
     let lat = "";
     let lon = "";
 
-    if (props.weatherLat && props.weatherLon){
-        lat = props.weatherLat;
-        lon = props.weatherLon;
+    if (ucLat && ucLon){
+        lat = ucLat;
+        lon = ucLon;
     } else {
         lat = props.latitude;
         lon = props.longitude;
